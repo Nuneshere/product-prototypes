@@ -1,0 +1,656 @@
+    <!-- ========== RELATIONSHIP HEALTH ========== -->
+    <div class="sidebar-section sidebar-section--open">
+      <div class="sidebar-section-header">
+        <span class="sidebar-section-title" onclick="this.closest('.sidebar-section').classList.toggle('sidebar-section--open')">
+          <span class="ai-intel-badge" style="font-size:10px; padding:2px 7px;">✦ AI</span>
+          Relationship Health
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 2.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+      <div class="rel-health-score-wrap">
+        <div class="rel-health-ring">
+          <svg width="56" height="56" viewBox="0 0 56 56">
+            <circle cx="28" cy="28" r="22" fill="none" stroke="var(--bg-grey-f1)" stroke-width="5"/>
+            <circle cx="28" cy="28" r="22" fill="none" stroke="#22AD01" stroke-width="5"
+              stroke-dasharray="138.2" stroke-dashoffset="36" stroke-linecap="round" style="transform:rotate(-90deg); transform-origin:28px 28px;"/>
+          </svg>
+          <div class="rel-health-ring-label">
+            <span class="rel-health-ring-number">78</span>
+            <span class="rel-health-ring-unit">/100</span>
+          </div>
+        </div>
+        <div class="rel-health-meta">
+          <div class="rel-health-label">Good standing</div>
+          <div class="rel-health-sublabel">Engagement active · last 30d</div>
+        </div>
+      </div>
+      <div class="rel-health-sparkline">
+        <div style="font-size:11px; color:var(--text-muted); margin-bottom:5px;">7-day engagement trend</div>
+        <svg width="100%" height="32" viewBox="0 0 240 32" preserveAspectRatio="none">
+          <polyline points="0,28 34,20 68,22 102,14 136,16 170,10 204,8 240,14"
+            fill="none" stroke="#22AD01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="0,28 34,20 68,22 102,14 136,16 170,10 204,8 240,14 240,32 0,32"
+            fill="rgba(34,173,1,0.07)" stroke="none"/>
+        </svg>
+      </div>
+      <div class="rel-health-alert">
+        <div class="rel-health-alert-title">⚠ Contract unsigned for 12 days</div>
+        <div class="rel-health-alert-desc">Engagement dropped since the proposal was sent. Follow up before interest cools.</div>
+      </div>
+      <button class="rel-health-action-btn" onclick="openAiFollowupEmail()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        Send re-engagement email
+      </button>
+    </div>
+
+    <!-- ========== PROPERTIES ========== -->
+    <div class="page-properties-section">
+      <div class="page-properties-section-title page-properties-section-title--open">
+        <div class="page-properties-section-title-toggle" onclick="this.closest('.page-properties-section-title').classList.toggle('page-properties-section-title--open'); this.querySelector('.page-properties-section-title-toggle-icon').classList.toggle('page-properties-section-title-toggle-icon--open')">
+          Properties
+          <svg class="page-properties-section-title-toggle-icon page-properties-section-title-toggle-icon--open" viewBox="0 0 8 8" fill="none"><path d="M1 2.5l3 3 3-3" stroke="currentColor" stroke-width="1.3"/></svg>
+        </div>
+        <div class="dashboard-chart-options showing-xs" style="position:relative;">
+          <button class="dashboard-chart-option-add-icon">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="6" fill="var(--bg-grey-f5)"/><line x1="15" y1="9" x2="15" y2="21" stroke="#22AD01" stroke-width="1.8" stroke-linecap="round"/><line x1="9" y1="15" x2="21" y2="15" stroke="#22AD01" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div>
+        <div class="page-properties-section-item">
+          <span class="page-properties-section-item-label">Email</span>
+          <div class="page-properties-section-item-editable">
+            <div class="ghost-input-wrapper">
+              <input class="ghost-form-control" value="m.fawler@adobe.com" />
+            </div>
+          </div>
+        </div>
+        <div class="page-properties-section-item">
+          <span class="page-properties-section-item-label">Phone</span>
+          <div class="page-properties-section-item-editable">
+            <div class="ghost-input-wrapper">
+              <input class="ghost-form-control" value="+1 (415) 555-0192" />
+            </div>
+          </div>
+        </div>
+        <div class="page-properties-section-item">
+          <span class="page-properties-section-item-label">Role</span>
+          <div class="page-properties-section-item-editable">
+            <div class="ghost-input-wrapper">
+              <input class="ghost-form-control" id="prop-role" placeholder="Add role..." />
+            </div>
+            <div class="ai-enrichment-hint" id="hint-role">
+              <span class="ai-enrichment-hint-text">✦ AI suggests: <strong>VP of Design</strong> (from email signature)</span>
+              <button class="ai-enrichment-accept" onclick="acceptEnrichment('role', 'VP of Design')">Accept</button>
+            </div>
+          </div>
+        </div>
+        <div class="page-properties-section-item">
+          <span class="page-properties-section-item-label">Deal stage</span>
+          <div class="page-properties-section-item-editable">
+            <div class="ghost-input-wrapper">
+              <input class="ghost-form-control" value="Proposal Sent" />
+            </div>
+          </div>
+        </div>
+        <div class="page-properties-section-item">
+          <span class="page-properties-section-item-label">LinkedIn</span>
+          <div class="page-properties-section-item-editable">
+            <div class="ghost-input-wrapper">
+              <input class="ghost-form-control" id="prop-linkedin" placeholder="Add LinkedIn..." />
+            </div>
+            <div class="ai-enrichment-hint" id="hint-linkedin">
+              <span class="ai-enrichment-hint-text">✦ AI found: <strong>linkedin.com/in/mfawler</strong></span>
+              <button class="ai-enrichment-accept" onclick="acceptEnrichment('linkedin', 'linkedin.com/in/mfawler')">Accept</button>
+            </div>
+          </div>
+        </div>
+        <div class="page-properties-section-item">
+          <span class="page-properties-section-item-label">Source</span>
+          <div class="page-properties-section-item-editable">
+            <div class="ghost-input-wrapper">
+              <input class="ghost-form-control" value="Referral" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== COMPANIES ========== -->
+    <div class="sidebar-section sidebar-section--open">
+      <div class="sidebar-section-header">
+        <span class="sidebar-section-title" onclick="this.closest('.sidebar-section').classList.toggle('sidebar-section--open')">
+          Companies
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 2.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <button class="sidebar-section-toggle">+ Add</button>
+      </div>
+      <div class="company-card">
+        <div class="company-card-avatar" style="background: #1473e6;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+        </div>
+        <div>
+          <div class="company-card-name">Adobe</div>
+          <div style="font-size:12px; color:var(--text-muted);">Enterprise · San Jose, CA</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end contact-sidebar -->
+  </div><!-- end contact-content-area -->
+</div><!-- end contact-page-body -->
+</div><!-- end outer-wrapper -->
+
+<!-- ========== DELETE NOTE MODAL ========== -->
+<div class="modal-overlay hidden" id="delete-note-modal">
+  <div class="modal-wrap">
+    <div class="modal-dialog delete-note-modal">
+      <div class="delete-note-modal-title">Delete note?</div>
+      <div class="delete-note-modal-desc">This note will be permanently deleted and cannot be recovered.</div>
+      <button class="btn-danger" onclick="confirmDeleteNote()">Delete note</button>
+    </div>
+    <button class="modal-close-btn" onclick="document.getElementById('delete-note-modal').classList.add('hidden')">×</button>
+  </div>
+</div>
+
+<script>
+// ── Tab switching ──────────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.subnavigation-item').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('tab-' + name);
+  if (panel) panel.classList.add('active');
+  document.querySelectorAll('.subnavigation-item').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + name + "'")) {
+      b.classList.add('active');
+    }
+  });
+}
+
+// ── Note menus ────────────────────────────────────────────────────────────────
+function toggleNoteMenu(btn) {
+  closeAllNoteMenus();
+  const dd = btn.nextElementSibling;
+  if (dd) dd.classList.toggle('open');
+}
+function closeAllNoteMenus() {
+  document.querySelectorAll('.note-dropdown').forEach(d => d.classList.remove('open'));
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.note-actions') && !e.target.closest('.note-menu-btn')) {
+    closeAllNoteMenus();
+  }
+});
+
+// ── Note composer ─────────────────────────────────────────────────────────────
+function getNoteComposerHTML(mode) {
+  return `<div class="note-edit-area">
+    <div class="note-composer-toolbar">
+      <button class="note-composer-toolbar-btn"><strong>B</strong></button>
+      <button class="note-composer-toolbar-btn"><em>i</em></button>
+      <button class="note-composer-toolbar-btn"><u>U</u></button>
+      <div class="note-composer-toolbar-sep"></div>
+      <button class="note-composer-toolbar-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+      </button>
+    </div>
+    <div class="note-composer-body" contenteditable="true" data-placeholder="Write a note..."></div>
+    <div class="note-composer-actions">
+      <button class="btn btn-sm btn-primary" onclick="saveNote(this)" style="font-size:13px; padding:6px 14px;">Save</button>
+      <button class="btn btn-sm btn-secondary-outline" data-mode="${mode}" onclick="cancelNote(this)" style="font-size:13px; padding:6px 14px;">Cancel</button>
+    </div>
+  </div>`;
+}
+
+function showNoteComposer() {
+  document.getElementById('note-add-toggle').style.display = 'none';
+  const slot = document.getElementById('note-composer');
+  slot.innerHTML = getNoteComposerHTML('add');
+  slot.style.display = 'block';
+  slot.querySelector('.note-composer-body').focus();
+}
+
+function cancelNote(btn) {
+  const mode = btn.getAttribute('data-mode');
+  if (mode === 'add') {
+    document.getElementById('note-composer').innerHTML = '';
+    document.getElementById('note-composer').style.display = 'none';
+    document.getElementById('note-add-toggle').style.display = 'flex';
+  } else if (mode === 'edit') {
+    const item = btn.closest('.note-item') || btn.closest('.activity-item');
+    const body = item.querySelector('.note-item-body') || item.querySelector('.activity-item-body');
+    const textEl = body.querySelector('[data-note-text]');
+    if (textEl) textEl.style.display = '';
+    body.querySelector('.note-edit-area').remove();
+  } else if (mode === 'activity-add') {
+    const wrap = document.getElementById('activity-note-composer-wrap');
+    if (wrap) { wrap.innerHTML = ''; wrap.style.display = 'none'; }
+    document.getElementById('note-add-toggle').style.display = 'flex';
+  }
+}
+
+function saveNote(btn) {
+  const area = btn.closest('.note-edit-area');
+  const body = area.querySelector('.note-composer-body');
+  const text = body.innerText.trim();
+  if (!text) return;
+  cancelNote(area.querySelector('[data-mode]'));
+}
+
+function editNote(btn) {
+  closeAllNoteMenus();
+  const item = btn.closest('.note-item') || btn.closest('.activity-item');
+  const body = item.querySelector('.note-item-body') || item.querySelector('.activity-item-body');
+  const textEl = body.querySelector('.note-text');
+  if (textEl) { textEl.style.display = 'none'; }
+  const editArea = document.createElement('div');
+  editArea.innerHTML = getNoteComposerHTML('edit');
+  body.appendChild(editArea.firstElementChild);
+  if (textEl) {
+    body.querySelector('.note-composer-body').innerText = textEl.innerText;
+  }
+}
+
+let _itemToDelete = null;
+function deleteNote(btn) {
+  closeAllNoteMenus();
+  _itemToDelete = btn.closest('.note-item') || btn.closest('.activity-item');
+  document.getElementById('delete-note-modal').classList.remove('hidden');
+}
+function confirmDeleteNote() {
+  if (_itemToDelete) { _itemToDelete.remove(); _itemToDelete = null; }
+  document.getElementById('delete-note-modal').classList.add('hidden');
+}
+
+// ── Add menu (activity tab) ───────────────────────────────────────────────────
+function toggleAddMenu() {
+  const dd = document.getElementById('add-dropdown');
+  if (dd) dd.classList.toggle('open');
+}
+
+function showActivityNoteComposer() {
+  const dd = document.getElementById('add-dropdown');
+  if (dd) dd.classList.remove('open');
+  const wrap = document.getElementById('activity-note-composer-wrap');
+  if (wrap) {
+    wrap.innerHTML = getNoteComposerHTML('activity-add');
+    wrap.style.display = 'block';
+    wrap.querySelector('.note-composer-body').focus();
+  }
+}
+
+// ── AI Intelligence Card ──────────────────────────────────────────────────────
+function toggleAiIntel() {
+  const card = document.getElementById('ai-intel-card');
+  const btn = document.getElementById('ai-intel-toggle');
+  card.classList.toggle('collapsed');
+  btn.textContent = card.classList.contains('collapsed') ? 'Expand ↓' : 'Collapse ↑';
+}
+
+// ── Meeting panel ─────────────────────────────────────────────────────────────
+const meetingData = [
+  {
+    title: 'Product Demo & Rebrand Kickoff',
+    date: 'Mar 7, 2026 · 1:30 PM',
+    duration: '58 min',
+    hasRecording: true,
+    owner: 'Lucas Didier',
+    invitees: ['Michael Fawler', 'Sarah L'],
+    recap: 'Comprehensive kickoff session covering full rebrand scope, timeline expectations, and budget approval. Michael confirmed leadership sign-off and expressed excitement about the project direction. Discussed moodboard concepts and agreed on a two-phase delivery approach.',
+    chapters: [
+      { title: 'Project scope confirmation', content: 'Michael confirmed the full rebrand scope including logo, brand identity, and digital assets. Budget approved for Phase 1 immediately.' },
+      { title: 'Timeline and milestones', content: 'Agreed on 8-week delivery timeline. Phase 1 (logo + identity) in 4 weeks, Phase 2 (digital) in 4 weeks.' },
+      { title: 'Moodboard and direction', content: 'Reviewed 3 initial moodboard concepts. Michael preferred the "Modern Minimalist" direction with a preference for warmer tones.' }
+    ],
+    nextSteps: [
+      'Send updated contract by Friday',
+      'Share refined moodboard by next Wednesday',
+      'Schedule Phase 1 review call for 2 weeks out'
+    ],
+    transcript: [
+      { speaker: 'Lucas Didier', time: '0:00', text: 'Great to have you on, Michael. Let\'s kick off the rebrand project officially.' },
+      { speaker: 'Michael Fawler', time: '0:12', text: 'Excited to be here. Leadership has officially approved the budget so we\'re good to go with the full scope.' },
+      { speaker: 'Lucas Didier', time: '0:28', text: 'Fantastic. Let me walk you through the proposed timeline and then we can review the moodboard concepts.' }
+    ]
+  },
+  {
+    title: 'Proposal Review',
+    date: 'Feb 20, 2026 · 11:00 AM',
+    duration: '42 min',
+    hasRecording: true,
+    owner: 'Lucas Didier',
+    invitees: ['Michael Fawler', 'Sarah L'],
+    recap: 'Reviewed the detailed proposal with Michael and Sarah. Both stakeholders had questions about scope and timeline. Michael asked for a breakdown of Phase 2 costs. Overall positive response but awaiting final internal sign-off.',
+    chapters: [
+      { title: 'Proposal walkthrough', content: 'Walked through all line items in the proposal. Michael focused on Phase 2 digital costs.' },
+      { title: 'Internal sign-off process', content: 'Sarah explained that final budget approval needs to go through the CMO. Estimated 1-2 weeks.' }
+    ],
+    nextSteps: [
+      'Send revised Phase 2 cost breakdown',
+      'Follow up in 1 week on internal approval status'
+    ],
+    transcript: [
+      { speaker: 'Lucas Didier', time: '0:00', text: 'Thanks for joining. Let me share my screen and walk through the proposal.' },
+      { speaker: 'Sarah L', time: '0:45', text: 'Before we dive in — can you clarify what\'s included in the Phase 2 digital scope?' }
+    ]
+  },
+  {
+    title: 'Discovery Call',
+    date: 'Jan 30, 2026 · 3:00 PM',
+    duration: '35 min',
+    hasRecording: false,
+    owner: 'Lucas Didier',
+    invitees: ['Michael Fawler'],
+    recap: 'Initial discovery call with Michael. Excellent rapport established. Michael shared Adobe\'s vision for a complete brand refresh. High intent — he mentioned they\'ve been looking for the right agency for 3 months.',
+    chapters: [
+      { title: 'Background and context', content: 'Adobe is undergoing an internal brand refresh initiative for their Creative Cloud sub-brand. Michael is the project lead.' },
+      { title: 'Scope and budget', content: 'Initial budget range discussed: $40-60K. Full logo, identity system, and digital touchpoints.' }
+    ],
+    nextSteps: [
+      'Send introductory proposal within 5 business days',
+      'Share portfolio examples relevant to SaaS brand work'
+    ],
+    transcript: [
+      { speaker: 'Michael Fawler', time: '0:00', text: 'Hi! Thanks for making time. I\'ve been following your work for a while and think there could be a great fit here.' },
+      { speaker: 'Lucas Didier', time: '0:15', text: 'Really appreciate that. Tell me about the rebrand initiative at Adobe.' }
+    ]
+  }
+];
+
+let meetingPanelJustOpened = false;
+
+function openMeetingPanel(idx) {
+  const d = meetingData[idx];
+  const panel = document.getElementById('meeting-detail-panel');
+  if (!panel) return;
+  // Populate top bar
+  const titleEl = panel.querySelector('.mdp-top-bar-title');
+  if (titleEl) titleEl.textContent = d.title;
+  const metaEl = panel.querySelector('.mdp-top-bar-meta');
+  if (metaEl) metaEl.innerHTML = `<span>${d.date}</span><span class="mdp-top-bar-meta-sep">·</span><span>${d.duration}</span>`;
+  // Populate recap
+  const recapEl = panel.querySelector('.mdp-recap-text');
+  if (recapEl) recapEl.textContent = d.recap;
+  // Populate next steps
+  const nsEl = panel.querySelector('.mdp-next-steps-list');
+  if (nsEl) nsEl.innerHTML = d.nextSteps.map(s => `<div class="mdp-next-step"><em class="mdp-next-step-arrow">→</em><span>${s}</span></div>`).join('');
+  // Populate transcript
+  const txEl = panel.querySelector('#mdp-tab-transcript');
+  if (txEl) {
+    txEl.innerHTML = d.transcript.map(t => `
+      <div class="mdp-transcript-block">
+        <div class="mdp-transcript-meta">
+          <span class="mdp-transcript-speaker">${t.speaker}</span>
+          <span class="mdp-transcript-time">${t.time}</span>
+        </div>
+        <p class="mdp-transcript-text">${t.text}</p>
+      </div>`).join('') + (d.transcript.length === 0 ? '<div class="mdp-no-transcript">No transcript available for this meeting.</div>' : '');
+  }
+  panel.classList.add('open');
+  meetingPanelJustOpened = true;
+  switchMdpTab('summary', null);
+}
+
+function switchMdpTab(tab, btn) {
+  const panel = document.getElementById('meeting-detail-panel');
+  if (!panel) return;
+  panel.querySelectorAll('.mdp-subnav-item').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  else {
+    panel.querySelectorAll('.mdp-subnav-item').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + tab + "'")) b.classList.add('active');
+    });
+  }
+  ['summary','transcript'].forEach(t => {
+    const el = panel.querySelector('#mdp-tab-' + t);
+    if (el) el.hidden = (t !== tab);
+  });
+}
+
+function closeMeetingPanel() {
+  const panel = document.getElementById('meeting-detail-panel');
+  if (panel) panel.classList.remove('open');
+}
+
+// ── Email data ─────────────────────────────────────────────────────────────────
+const emailData = [
+  {
+    subject: 'Re: Rebrand proposal — next steps',
+    sender: 'Michael Fawler',
+    senderEmail: 'm.fawler@adobe.com',
+    to: 'you@bonsai.io',
+    date: 'Mar 4, 2026',
+    body: '<p>Hi,</p><p>Thanks for sending over the updated proposal. I\'ve reviewed it with Sarah and we\'re aligned on moving forward. Can we get the contract signed this week?</p><p>Also — I wanted to ask about the moodboard. Any chance we could see a first pass before our next call?</p><p>Best,<br>Michael</p>',
+    comments: []
+  },
+  {
+    subject: 'Invoice #INV-0042 — Rebrand Discovery Phase',
+    sender: 'You',
+    senderEmail: 'you@bonsai.io',
+    to: 'm.fawler@adobe.com',
+    date: 'Feb 22, 2026',
+    body: '<p>Hi Michael,</p><p>Please find attached Invoice #INV-0042 for the Discovery Phase as discussed in our proposal review meeting.</p><p>Payment is due within 30 days. Let me know if you have any questions.</p><p>Best,<br>Lucas</p>',
+    comments: []
+  },
+  {
+    subject: 'Proposal: Adobe Creative Cloud Brand Refresh',
+    sender: 'You',
+    senderEmail: 'you@bonsai.io',
+    to: 'm.fawler@adobe.com',
+    date: 'Feb 10, 2026',
+    body: '<p>Hi Michael,</p><p>Great speaking with you last week! As promised, here is our proposal for the Adobe Creative Cloud brand refresh project.</p><p>Please review and let me know if you\'d like to schedule a call to walk through the details.</p><p>Best,<br>Lucas</p>',
+    comments: []
+  }
+];
+
+let emailPanelJustOpened = false;
+let currentEmailIdx = 0;
+
+function openEmailPanel(idx) {
+  currentEmailIdx = idx;
+  const d = emailData[idx];
+  const panel = document.getElementById('email-detail-panel');
+  if (!panel) return;
+  const subjEl = document.getElementById('edp-subject');
+  if (subjEl) subjEl.textContent = d.subject;
+  panel.classList.remove('compose-mode');
+  panel.classList.add('open');
+  emailPanelJustOpened = true;
+  renderEmailComments(idx);
+}
+
+function renderEmailComments(idx) {
+  const el = document.getElementById('edp-comments-display');
+  if (!el) return;
+  const comments = emailData[idx].comments || [];
+  if (comments.length === 0) { el.innerHTML = ''; return; }
+  el.innerHTML = comments.map(c => `
+    <div class="edp-comment-item">
+      <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(c.author)}&size=28&background=22AD01&color=fff" style="width:28px;height:28px;border-radius:50%;" />
+      <div class="edp-comment-bubble">
+        <div class="edp-comment-author">${c.author}</div>
+        <div class="edp-comment-text">${c.text}</div>
+        <div class="edp-comment-time">${c.time}</div>
+      </div>
+    </div>`).join('');
+}
+
+function closeEmailPanel() {
+  const panel = document.getElementById('email-detail-panel');
+  if (panel) { panel.classList.remove('open'); panel.classList.remove('compose-mode'); }
+}
+
+function switchComposeTab(tab) {
+  const panel = document.getElementById('email-detail-panel');
+  if (!panel) return;
+  panel.querySelectorAll('.edp-tc-tab').forEach(t => t.classList.remove('edp-tc-tab--active'));
+  panel.querySelectorAll('.edp-tc-panel').forEach(p => p.classList.remove('edp-tc-panel--active'));
+  const activeTab = panel.querySelector('.edp-tc-tab[data-tab="' + tab + '"]');
+  const activePanel = panel.querySelector('#edp-tc-panel-' + tab);
+  if (activeTab) activeTab.classList.add('edp-tc-tab--active');
+  if (activePanel) activePanel.classList.add('edp-tc-panel--active');
+}
+
+function openAiFollowupEmail() {
+  switchTab('emails');
+  setTimeout(() => {
+    const panel = document.getElementById('email-detail-panel');
+    if (!panel) return;
+    panel.classList.add('open', 'compose-mode');
+    emailPanelJustOpened = true;
+    const toInput = panel.querySelector('.edp-compose-input');
+    if (toInput) toInput.value = 'm.fawler@adobe.com';
+    const inputs = panel.querySelectorAll('.edp-compose-input');
+    if (inputs[1]) inputs[1].value = 'Follow-up: Rebrand project next steps';
+    const body = panel.querySelector('#edp-compose-body');
+    if (body) body.innerHTML = 'Hi Michael,<br><br>Following up on our call today — great to hear the team is excited about the rebrand!<br><br>As discussed, I\'ll send over the updated contract by Friday. I\'m also putting together the moodboard and will share it ahead of our next call.<br><br>Let me know if there\'s anything else you\'d like me to include.<br><br>Best,<br>Lucas';
+    const banner = document.getElementById('ai-draft-banner');
+    if (banner) banner.style.display = 'flex';
+  }, 150);
+}
+
+// ── Call panel ────────────────────────────────────────────────────────────────
+const callData = [
+  {
+    title: 'Inbound call · Michael Fawler',
+    duration: '18 min',
+    phone: '+1 (415) 555-0192',
+    sentiment: 'positive',
+    recap: 'Michael confirmed budget approval for the full rebrand project scope. He requested the updated contract be sent by Friday and mentioned he\'d like to schedule a follow-up to review the moodboard. Tone was positive and enthusiastic throughout.'
+  },
+  {
+    title: 'Outbound call · Michael Fawler',
+    duration: '9 min',
+    phone: '+1 (415) 555-0192',
+    sentiment: 'neutral',
+    recap: 'Michael requested a detailed breakdown of the invoice before approving. He mentioned budget concerns but seemed open to negotiation. Agreed to send a revised cost estimate by end of week.'
+  },
+  {
+    title: 'Inbound call · Michael Fawler',
+    duration: '24 min',
+    phone: '+1 (415) 555-0192',
+    sentiment: 'positive',
+    recap: 'Initial discovery call. Great rapport established. Michael expressed high intent and clear vision for the rebrand. Discussed timeline, budget range, and key stakeholders. Excellent opportunity — high close probability.'
+  }
+];
+
+let callPanelJustOpened = false;
+
+function openCallPanel(idx) {
+  const d = callData[idx];
+  document.getElementById('cdp-title').textContent = d.title;
+  document.getElementById('cdp-duration').textContent = d.duration;
+  document.getElementById('cdp-phone').textContent = d.phone;
+  document.getElementById('cdp-recap').textContent = d.recap;
+  const badge = document.getElementById('cdp-sentiment');
+  const cls = d.sentiment === 'positive' ? 'positive' : d.sentiment === 'negative' ? 'negative' : 'neutral';
+  badge.className = 'sentiment-badge sentiment-badge--' + cls;
+  badge.innerHTML = '<span class="sentiment-badge-dot"></span>' + (cls.charAt(0).toUpperCase() + cls.slice(1));
+  // Waveform
+  const wf = document.getElementById('cdp-waveform');
+  wf.innerHTML = '';
+  for (let i = 0; i < 55; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'cdp-waveform-bar';
+    const h = 8 + Math.random() * 40;
+    bar.style.cssText = 'width:3px; border-radius:2px; background:#22AD01; height:' + h + 'px; opacity:' + (0.25 + Math.random() * 0.7) + '; flex-shrink:0;';
+    wf.appendChild(bar);
+  }
+  document.getElementById('call-detail-panel').classList.add('open');
+  callPanelJustOpened = true;
+  switchCallTab('summary', null);
+}
+
+function closeCallPanel() {
+  document.getElementById('call-detail-panel').classList.remove('open');
+}
+
+function switchCallTab(tab, btn) {
+  document.querySelectorAll('.cdp-subnav-item').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  else {
+    document.querySelectorAll('.cdp-subnav-item').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + tab + "'")) b.classList.add('active');
+    });
+  }
+  document.getElementById('cdp-tab-summary').hidden = (tab !== 'summary');
+  document.getElementById('cdp-tab-transcript').hidden = (tab !== 'transcript');
+}
+
+// ── SMS ───────────────────────────────────────────────────────────────────────
+function insertSmsReply(btn, text) {
+  const input = document.getElementById('sms-compose-input');
+  if (input) { input.value = text; input.focus(); }
+}
+
+function sendSms() {
+  const input = document.getElementById('sms-compose-input');
+  const text = input ? input.value.trim() : '';
+  if (!text) return;
+  const thread = document.querySelector('.sms-thread');
+  if (!thread) return;
+  const row = document.createElement('div');
+  row.className = 'sms-row sms-row--outbound';
+  row.innerHTML = '<div><div class="sms-time" style="text-align:right;">Just now</div><div class="sms-bubble sms-bubble--outbound">' + text + '</div></div>';
+  thread.appendChild(row);
+  if (input) input.value = '';
+  const nudge = document.querySelector('.sms-no-reply-nudge');
+  if (nudge) nudge.style.display = 'none';
+}
+
+// ── AI helpers ────────────────────────────────────────────────────────────────
+function acceptEnrichment(field, value) {
+  const input = document.getElementById('prop-' + field);
+  if (input) input.value = value;
+  const hint = document.getElementById('hint-' + field);
+  if (hint) hint.style.display = 'none';
+}
+
+function createTaskFromAction(btn) {
+  btn.textContent = '✓ Added';
+  btn.style.color = '#22AD01';
+  btn.style.background = 'rgba(34,173,1,0.06)';
+  btn.disabled = true;
+  const checkbox = btn.closest('.ai-action-item').querySelector('.ai-action-checkbox');
+  if (checkbox) checkbox.classList.add('checked');
+}
+
+// ── Global click-outside handlers ─────────────────────────────────────────────
+document.addEventListener('click', function(e) {
+  // Call panel
+  if (callPanelJustOpened) { callPanelJustOpened = false; return; }
+  const callPanel = document.getElementById('call-detail-panel');
+  if (callPanel && callPanel.classList.contains('open') && !callPanel.contains(e.target)) {
+    const row = e.target.closest('.list-grid-body-row');
+    if (!row) closeCallPanel();
+  }
+  // Meeting panel
+  if (meetingPanelJustOpened) { meetingPanelJustOpened = false; return; }
+  const meetPanel = document.getElementById('meeting-detail-panel');
+  if (meetPanel && meetPanel.classList.contains('open') && !meetPanel.contains(e.target)) {
+    const row = e.target.closest('.list-grid-body-row');
+    if (!row) closeMeetingPanel();
+  }
+  // Email panel
+  if (emailPanelJustOpened) { emailPanelJustOpened = false; return; }
+  const emailPanel = document.getElementById('email-detail-panel');
+  if (emailPanel && emailPanel.classList.contains('open') && !emailPanel.contains(e.target)) {
+    const row = e.target.closest('.email-thread-row');
+    if (!row) closeEmailPanel();
+  }
+});
+
+// ── Chapter toggles (meeting panel) ──────────────────────────────────────────
+document.addEventListener('click', function(e) {
+  const header = e.target.closest('.mdp-chapter-header');
+  if (header) {
+    const chapter = header.closest('.mdp-chapter');
+    const content = chapter.querySelector('.mdp-chapter-content');
+    const chevron = chapter.querySelector('.mdp-chapter-chevron');
+    content.classList.toggle('open');
+    if (chevron) chevron.classList.toggle('open');
+  }
+});
+</script>
+</body>
+</html>
