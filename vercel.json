@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/prototype-kit/:path*", "destination": "/crm-future-aic/prototype-kit/:path*" },
+    { "source": "/assets/:path*", "destination": "/crm-future-aic/assets/:path*" },
     { "source": "/", "destination": "/crm-future-aic/contact-activity-tab/index.html" }
   ]
 }
