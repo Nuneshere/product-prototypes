@@ -2316,7 +2316,7 @@
                   </div>
                   <h2 class="company-details-name">Michael Fawler</h2>
                   <div class="company-details-info">
-                    Senior Manager of Consulting at
+                    Senior Manager at
                     <a href="#" class="company-details-info-link" style="color: var(--color-primary);">
                       <svg class="company-details-info-icon" width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.1805 8.6079H11.1804C11.1717 10.9139 13.0318 12.7886 15.3358 12.7983H15.3804C17.7 12.7983 19.5803 10.919 19.5803 8.59839C19.5803 6.27912 17.6996 4.39844 15.3804 4.39844C13.0611 4.39844 11.1805 6.27912 11.1805 8.59839V8.6079ZM13.8045 15.1177C10.8557 14.417 8.66842 11.7605 8.68045 8.59839C8.68045 4.89841 11.6804 1.89844 15.3804 1.89844C19.0803 1.89844 22.0803 4.89841 22.0803 8.59839C22.0803 11.7484 19.9079 14.389 16.9804 15.1061C16.5051 15.2226 16.0098 15.2883 15.5007 15.2973C15.4607 15.298 15.4206 15.2983 15.3804 15.2983H15.3313C14.8057 15.2966 14.2946 15.2341 13.8045 15.1177ZM17.1874 17.621C16.6154 17.5866 16.0497 17.5703 15.5007 17.5703C15.4607 17.5703 15.4206 17.5704 15.3804 17.5706C15.364 17.5706 15.3476 17.5707 15.3313 17.5708C15.3287 17.5708 15.3262 17.5709 15.3237 17.5709C14.7674 17.5744 14.1944 17.5949 13.6159 17.634C9.11356 17.9387 4.27197 19.3773 4.27197 22.8239C4.27197 26.7873 10.5621 28.1007 15.5007 28.1007C20.4133 28.1007 26.7279 26.8173 26.7279 22.8542C26.7279 19.3283 21.7598 17.8959 17.1874 17.621ZM8.92088 21.0621C6.96796 21.7935 6.77197 22.5093 6.77197 22.8239C6.77197 23.1636 6.97919 23.8806 8.91458 24.6087C10.7182 25.2871 13.1949 25.6007 15.5007 25.6007C17.7977 25.6007 20.2762 25.2938 22.0844 24.6207C24.0283 23.897 24.2279 23.1842 24.2279 22.8542C24.2279 22.5107 24.0182 21.7927 22.0847 21.0641C20.2818 20.3846 17.806 20.0703 15.5007 20.0703C13.2098 20.0703 10.7308 20.3843 8.92088 21.0621Z" fill="#22AD01"></path></svg>
                       Adobe
@@ -4281,39 +4281,36 @@ function createAdobeProposalFlow() {
   const meetingPanel = document.getElementById('meeting-detail-panel');
   if (meetingPanel) meetingPanel.classList.remove('open');
 
+  // Reset canvas opacity so it's hidden again
+  const canvasReset = document.getElementById('adobe-agr-canvas');
+  if (canvasReset) { canvasReset.style.transition = ''; canvasReset.style.opacity = '0'; }
+
   // Show Adobe agreements page (blank canvas)
   const adobePage = document.getElementById('adobe-agreements-page');
   if (adobePage) adobePage.style.display = 'flex';
+
+  // Show centered loading overlay
+  const loadingOverlay = document.getElementById('adobe-loading-overlay');
+  if (loadingOverlay) loadingOverlay.style.display = 'flex';
 
   // Update sidenav
   document.querySelectorAll('.sidenav-features-item').forEach(i => i.classList.remove('active'));
   const agr = document.getElementById('sidenav-agreements');
   if (agr) agr.classList.add('active');
 
-  // Show analyzing popup — phase 1
-  const popup = document.getElementById('bai-analyzing-popup');
-  const popupText = document.getElementById('bai-analyzing-text');
-  if (popup && popupText) {
-    popup.classList.remove('done');
-    popup.style.display = 'flex';
-    popupText.textContent = 'Analyzing your context';
-  }
-
-  // Phase 2 after 2.5s
+  // After 4s: fade in canvas, hide loading overlay
   setTimeout(() => {
-    if (popupText) popupText.textContent = 'Fetching your context';
-  }, 2500);
-
-  // After 5s: show "Done ✅", fade in canvas content
-  setTimeout(() => {
-    if (popupText) popupText.textContent = '✅ Done';
-    if (popup) popup.classList.add('done');
+    if (loadingOverlay) {
+      loadingOverlay.style.transition = 'opacity 0.4s ease';
+      loadingOverlay.style.opacity = '0';
+      setTimeout(() => { loadingOverlay.style.display = 'none'; loadingOverlay.style.opacity = ''; }, 400);
+    }
     const canvas = document.getElementById('adobe-agr-canvas');
     if (canvas) {
       canvas.style.transition = 'opacity 0.6s ease';
       canvas.style.opacity = '1';
     }
-  }, 5000);
+  }, 4000);
 }
 
 function switchMdpTab(tab, btn) {
@@ -4769,13 +4766,16 @@ function baiSendMessage(msg) {
 
   const isProposal = /proposal|agreement|contract/i.test(msg);
   const isWhatAre  = /what are/i.test(msg);
+  const isHowHas   = /how has my/i.test(msg);
 
   // Phase 1: Thinking
   const thinkingBlock = document.createElement('div');
   thinkingBlock.className = 'bai-thinking-block';
   const thinkingDetail = isWhatAre
     ? 'Analysing conversations that did not convert to a proposal…'
-    : 'Searching for relevant business data sources.';
+    : isHowHas
+      ? 'Pulling revenue data from your connected accounts…'
+      : 'Searching for relevant business data sources.';
   thinkingBlock.innerHTML = `
     <div class="bai-thinking-header">
       <span class="bai-thinking-label"><b>Think</b>ing<span style="letter-spacing:0.05em">...</span></span>
@@ -4785,9 +4785,9 @@ function baiSendMessage(msg) {
   chat.appendChild(thinkingBlock);
   chat.scrollTop = chat.scrollHeight;
 
-  // Timing: "what are" flow is slower (14s total), proposal is 10s
-  const editingDelay = isWhatAre ? 8000  : 5000;
-  const doneDelay    = isWhatAre ? 14000 : 10000;
+  // Timing: both flows — 2s to "Searching your data", 4s to response
+  const editingDelay = 2000;
+  const doneDelay    = 4000;
 
   // Phase 2: Editing
   setTimeout(() => {
@@ -4806,11 +4806,62 @@ function baiSendMessage(msg) {
 
   // Phase 3: Done — set structure, then stream text
   setTimeout(() => {
+    const revenueChartHTML = `
+<div class="bai-revenue-card">
+  <div class="bai-revenue-card-header">
+    <span class="bai-revenue-card-title">Revenue Pacing — 2026</span>
+    <span class="bai-revenue-card-badge">YTD</span>
+  </div>
+  <div class="bai-revenue-totals">
+    <div class="bai-revenue-stat"><span class="bai-revenue-num">$187,400</span><span class="bai-revenue-label">Collected</span></div>
+    <div class="bai-revenue-divider"></div>
+    <div class="bai-revenue-stat"><span class="bai-revenue-num">$240,000</span><span class="bai-revenue-label">Target</span></div>
+    <div class="bai-revenue-divider"></div>
+    <div class="bai-revenue-stat"><span class="bai-revenue-num bai-revenue-pct">+12%</span><span class="bai-revenue-label">vs last year</span></div>
+  </div>
+  <svg class="bai-revenue-chart" viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg">
+    <!-- Grid lines -->
+    <line x1="0" y1="72" x2="280" y2="72" stroke="#e8eaed" stroke-width="1"/>
+    <line x1="0" y1="48" x2="280" y2="48" stroke="#e8eaed" stroke-width="1"/>
+    <line x1="0" y1="24" x2="280" y2="24" stroke="#e8eaed" stroke-width="1"/>
+    <!-- Area fill -->
+    <defs>
+      <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#4361ee" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#4361ee" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path d="M20,65 L60,52 L100,44 L140,38 L180,30 L220,28 L260,72 L260,80 L20,80 Z" fill="url(#revGrad)"/>
+    <!-- Line -->
+    <polyline points="20,65 60,52 100,44 140,38 180,30 220,28" fill="none" stroke="#4361ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Target dashed line -->
+    <line x1="20" y1="20" x2="260" y2="20" stroke="#c0c4cc" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <!-- Dots -->
+    <circle cx="20" cy="65" r="3" fill="#4361ee"/>
+    <circle cx="60" cy="52" r="3" fill="#4361ee"/>
+    <circle cx="100" cy="44" r="3" fill="#4361ee"/>
+    <circle cx="140" cy="38" r="3" fill="#4361ee"/>
+    <circle cx="180" cy="30" r="3" fill="#4361ee"/>
+    <circle cx="220" cy="28" r="3.5" fill="#4361ee" stroke="#fff" stroke-width="1.5"/>
+    <!-- Month labels -->
+    <text x="20" y="86" font-size="7" fill="#9ca3af" text-anchor="middle">Jan</text>
+    <text x="60" y="86" font-size="7" fill="#9ca3af" text-anchor="middle">Feb</text>
+    <text x="100" y="86" font-size="7" fill="#9ca3af" text-anchor="middle">Mar</text>
+    <text x="140" y="86" font-size="7" fill="#9ca3af" text-anchor="middle">Apr</text>
+    <text x="180" y="86" font-size="7" fill="#9ca3af" text-anchor="middle">May</text>
+    <text x="220" y="86" font-size="7" fill="#4361ee" font-weight="600" text-anchor="middle">Jun</text>
+    <!-- Target label -->
+    <text x="265" y="19" font-size="6.5" fill="#9ca3af">Target</text>
+  </svg>
+</div>`;
+
     const responseText = isWhatAre
       ? `<p>Based on your last 3 conversations that didn't progress to a proposal — with <strong>Sarah Chen</strong> (Dec 12), <strong>Mark Peters</strong> (Jan 8), and the <strong>Figma team</strong> (Jan 19) — here are three things you could improve:</p><ul class="bai-bullet-list"><li><strong>Follow-up timing</strong><br>In all three cases, follow-ups happened 5+ days after the last touchpoint. Both Sarah and Mark went cold after the initial pitch. Reaching out within 48 hours significantly increases conversion.</li><li><strong>Pricing clarity</strong><br>Two of the three conversations ended shortly after pricing was introduced without a value summary upfront. Sharing ROI framing or a case study before presenting numbers helps prospects justify the cost internally.</li><li><strong>Decision-maker alignment</strong><br>None of the three conversations included the final decision-maker. With the Figma team, the contact confirmed they needed VP sign-off — a stakeholder who was never brought in. Involving key decision-makers earlier could accelerate the close.</li></ul>`
-      : isProposal
-        ? `<p>I've created a proposal for TechStart Labs based on your conversations with James and Dave. It covers the rebrand scope, budget alignment, and next steps discussed in your recent meetings.</p><p>Opening it in <strong>Agreements</strong> now…</p>`
-        : `<p>Done! I've completed your request based on the current context.</p>`;
+      : isHowHas
+        ? `<p>Your revenue is tracking well this year. Through June you've collected <strong>$187,400</strong> — about <strong>78% of your $240K annual target</strong> with half the year still ahead. Growth is up <strong>12% year-over-year</strong>, driven largely by Q1 retainer renewals and the Adobe engagement closing in March.</p><p>The pace has been consistently accelerating each month, which puts you on track to exceed the annual target if the current pipeline closes as expected.</p>${revenueChartHTML}`
+        : isProposal
+          ? `<p>I've created a proposal for TechStart Labs based on your conversations with James and Dave. It covers the rebrand scope, budget alignment, and next steps discussed in your recent meetings.</p><p>Opening it in <strong>Agreements</strong> now…</p>`
+          : `<p>Done! I've completed your request based on the current context.</p>`;
 
     // Build static structure
     thinkingBlock.innerHTML = `
@@ -4820,7 +4871,7 @@ function baiSendMessage(msg) {
       </div>
       <div class="bai-edited-row">
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="7.5" r="6" stroke="#6b6e6a" stroke-width="1.3"/><path d="M4.5 7.5L6.5 9.5L10.5 5.5" stroke="#6b6e6a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        ${isWhatAre ? 'Done' : ''}
+        ${(isWhatAre || isHowHas) ? 'Done' : ''}
       </div>`;
 
     const responseDiv = document.createElement('div');
@@ -4835,8 +4886,14 @@ function baiSendMessage(msg) {
         <button class="bai-feedback-btn" title="Regenerate"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 8A5.5 5.5 0 112.5 5M2.5 2v3h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>`;
 
+    // For revenue flow: stream only the text part, inject chart after
+    const streamText = isHowHas
+      ? responseText.replace(revenueChartHTML, '')
+      : responseText;
+
     // Stream response text, then show feedback + restore button + redirect
-    streamHTML(responseDiv, responseText, 22, () => {
+    streamHTML(responseDiv, streamText, 22, () => {
+      if (isHowHas) responseDiv.insertAdjacentHTML('beforeend', revenueChartHTML);
       thinkingBlock.insertAdjacentHTML('beforeend', feedbackHTML);
       sendBtn.classList.remove('stop');
       sendBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12V2M2.5 6.5L7 2L11.5 6.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -5511,6 +5568,32 @@ document.addEventListener('DOMContentLoaded', function() {
     flex-shrink: 0;
   }
 
+  /* Revenue chart card */
+  .bai-revenue-card {
+    margin-top: 14px;
+    border: 1.5px solid #e4e7ec;
+    border-radius: 12px;
+    padding: 14px 16px 10px;
+    background: #fff;
+  }
+  .bai-revenue-card-header {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
+  }
+  .bai-revenue-card-title { font-size: 12px; font-weight: 600; color: #3a3d3a; }
+  .bai-revenue-card-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+    background: #eef1ff; color: #4361ee; border-radius: 4px; padding: 2px 6px;
+  }
+  .bai-revenue-totals {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+  }
+  .bai-revenue-stat { display: flex; flex-direction: column; gap: 2px; }
+  .bai-revenue-num { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .bai-revenue-pct { color: #22AD01; }
+  .bai-revenue-label { font-size: 10px; color: #9ca3af; }
+  .bai-revenue-divider { width: 1px; height: 28px; background: #e4e7ec; }
+  .bai-revenue-chart { width: 100%; height: auto; display: block; }
+
   /* Stop button state */
   #bai-send-btn.stop { background: #1a1a1a; }
   #bai-send-btn.stop:hover { background: #333; transform: none; }
@@ -5593,7 +5676,7 @@ document.addEventListener('DOMContentLoaded', function() {
     flex-shrink: 0; gap: 8px; background: #fff;
   }
   .agr-topbar-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
-  .agr-breadcrumb-link { font-size: 13px; color: #6b6e6a; text-decoration: none; display: flex; align-items: center; gap: 5px; }
+  .agr-breadcrumb-link { font-size: 13px; color: #6b6e6a !important; text-decoration: none; display: flex; align-items: center; gap: 5px; }
   .agr-breadcrumb-sep { color: #c8c8c4; font-size: 14px; }
   .agr-breadcrumb-current { font-size: 13px; font-weight: 500; color: #121212; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px; }
   .agr-topbar-actions { display: flex; align-items: center; gap: 6px; }
@@ -6434,7 +6517,20 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 
   <!-- Main -->
-  <div class="agr-main">
+  <div class="agr-main" style="position:relative;">
+
+    <!-- Centered loading overlay (shown during generation) -->
+    <div id="adobe-loading-overlay" style="display:none; position:absolute; inset:0; z-index:10; background:#f5f5f3; flex-direction:column; align-items:center; justify-content:center; gap:20px;">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+        <img src="../assets/aicicon.png" width="40" height="40" style="display:block;">
+        <span style="font-size:13px; font-weight:600; color:#3a3d3a; letter-spacing:0.01em;">Generating your proposal…</span>
+        <div style="display:flex; gap:5px; align-items:center;">
+          <span class="bai-analyzing-dot"></span>
+          <span class="bai-analyzing-dot"></span>
+          <span class="bai-analyzing-dot"></span>
+        </div>
+      </div>
+    </div>
 
     <!-- Document canvas (starts invisible, fades in after analysis) -->
     <div class="agr-doc-area">
@@ -6605,7 +6701,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <button class="bai-header-menu-btn" title="Menu">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="1.5" rx="0.75" fill="currentColor"/><rect x="2" y="7.25" width="12" height="1.5" rx="0.75" fill="currentColor"/><rect x="2" y="10.5" width="12" height="1.5" rx="0.75" fill="currentColor"/></svg>
     </button>
-    <span class="bai-header-title">Bonsai AI <span style="font-weight:400;color:#8a8d8a;font-size:13px;">powered by Zoom AIC</span></span>
+    <span class="bai-header-title">Bonsai AI <span style="font-weight:400;color:#8a8d8a;font-size:13px;">powered by Zoom AI Companion</span></span>
     <div class="bai-header-actions">
       <button class="bai-header-btn" title="Expand">
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M9.5 2H13V5.5M13 2L8.5 6.5M5.5 13H2V9.5M2 13L6.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -6621,7 +6717,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="bai-empty-state" id="bai-empty-state">
       <img src="../assets/aicicon.png" width="52" height="52" style="display:block;margin-bottom:0;">
       <div class="bai-empty-title">Bonsai AI</div>
-      <div style="font-size:13px;color:#adb0ac;margin-top:4px;font-weight:400;">powered by Zoom AIC</div>
+      <div style="font-size:13px;color:#adb0ac;margin-top:4px;font-weight:400;">powered by Zoom AI Companion</div>
     </div>
     <div id="bai-suggestions">
       <div class="bai-suggestion" onclick="baiSuggest(this)"><span class="bai-sug-arrow">↳</span><span>📧 Draft follow-up email</span></div>
