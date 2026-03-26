@@ -1,0 +1,309 @@
+          <!-- ── ACTIVITY TAB ── -->
+          <div id="tab-activity" class="tab-panel active">
+            <div class="tab-section-title-row">
+              <span class="tab-section-title">Activity</span>
+              <div class="add-btn-wrap">
+                <div class="dashboard-chart-options showing-xs" style="position: relative;">
+                  <a class="dashboard-chart-option-add-icon" onclick="toggleAddMenu()" title="Add" style="cursor:pointer;">
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.4062 8.83333H11.6667V2.09375C11.6667 1.21354 10.9219 0.5 10 0.5C9.07812 0.5 8.33333 1.21354 8.33333 2.09375V8.83333H1.59375C0.713542 8.83333 0 9.57812 0 10.5C0 11.4219 0.713542 12.1667 1.59375 12.1667H8.33333V18.9062C8.33333 19.7865 9.07812 20.5 10 20.5C10.9219 20.5 11.6667 19.7865 11.6667 18.9062V12.1667H18.4062C19.2865 12.1667 20 11.4219 20 10.5C20 9.57812 19.2865 8.83333 18.4062 8.83333Z" fill="#22AD01"></path></svg>
+                  </a>
+                  <div class="add-dropdown" id="add-activity-menu">
+                    <div class="field-popup-menu popup-menu-160" style="position: relative; box-shadow: var(--box-shadow-medium);">
+                      <a class="field-popup-menu-list-item" onclick="showActivityNoteComposer()">
+                        Add Note
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="activity-note-composer-wrap" style="display:none; margin-bottom: 20px;"></div>
+
+            <div class="activity-feed">
+
+              <!-- AI Revenue Signal -->
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="activity-icon-badge" style="background: rgba(245,158,11,0.1);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  </div>
+                  <div class="activity-item-line"></div>
+                </div>
+                <div class="activity-item-body">
+                  <div class="activity-meta"><span style="color:#d97706; font-weight:600;">✦ AI Revenue Signal</span> · just now</div>
+                  <div class="revenue-trigger-card">
+                    <div class="revenue-trigger-icon">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <div class="revenue-trigger-body">
+                      <div class="revenue-trigger-title">Project approval detected in last meeting</div>
+                      <div class="revenue-trigger-desc">Michael said "let's move forward with the full rebrand scope" in your Product Demo call. Ready to create an invoice or send a contract?</div>
+                      <div class="revenue-trigger-actions">
+                        <button class="revenue-trigger-btn revenue-trigger-btn--primary">Create Invoice</button>
+                        <button class="revenue-trigger-btn revenue-trigger-btn--ghost">Send Contract</button>
+                        <button class="revenue-trigger-btn revenue-trigger-btn--ghost" onclick="this.closest('.revenue-trigger-card').style.display='none'">Dismiss</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Zoom Phone call -->
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="activity-icon-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+                  </div>
+                  <div class="activity-item-line"></div>
+                </div>
+                <div class="activity-item-body">
+                  <div class="activity-meta"><strong>Zoom Phone</strong> · Yesterday at 3:14 PM · <span class="sentiment-badge sentiment-badge--positive"><span class="sentiment-badge-dot"></span>Positive</span></div>
+                  <div class="call-card" onclick="openCallPanel(0)">
+                    <div class="call-card-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22AD01" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+                    </div>
+                    <div class="call-card-body">
+                      <div class="call-card-top">
+                        <span class="call-card-title">Inbound call · Michael Fawler</span>
+                        <span class="call-card-duration">18 min</span>
+                      </div>
+                      <div class="call-card-summary">Discussed contract timeline and budget approval. Michael confirmed final scope. Follow-up tasks extracted by AI.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Note: Tom Bradley -->
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="user-avatar avatar-xs" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                  <div class="activity-item-line"></div>
+                </div>
+                <div class="activity-item-body">
+                  <div class="activity-meta"><strong>Tom Bradley</strong> added a note &middot; Jan 22, 6:15 PM</div>
+                  <div class="activity-text">Michael shared confidentially that TechStart Labs is exploring a seed fundraise in Q3. Wants us to complete the market positioning analysis before they start investor conversations.</div>
+                </div>
+                <div class="note-actions" style="flex-shrink:0; position: relative;">
+                  <button class="note-menu-btn" onclick="toggleNoteMenu(this)">···</button>
+                  <div class="note-dropdown" style="display:none;">
+                    <div class="field-popup-menu popup-menu-120" style="position:relative; box-shadow: var(--box-shadow-medium);">
+                      <a class="field-popup-menu-list-item" onclick="editNote(this)">Edit</a>
+                      <a class="field-popup-menu-list-item field-popup-menu-list-item--danger" onclick="deleteNote(this)">Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Deal assigned: Tom Bradley -->
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="user-avatar avatar-xs" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                  <div class="activity-item-line"></div>
+                </div>
+                <div class="activity-item-body">
+                  <div class="activity-meta"><strong>Tom Bradley</strong> assigned deal <strong>Market Entry Strategy</strong> ($15,000) to Michael Fawler &middot; Jan 21, 11:13 AM</div>
+                  <div class="doc-card">
+                    <div class="doc-card-icon">
+                      <svg width="18" height="15" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.40835 0H16.5053C18.0256 0 19.4085 0.880056 20.0523 2.25729L22.0028 6.42995C22.9123 8.3756 22.9123 10.6244 22.0028 12.57L20.0523 16.7427C19.4085 18.1199 18.0256 19 16.5053 19H4.40835C2.74724 19 0.782501 18.1324 0.151362 16.219C-0.159865 15.2755 0.0914611 14.4203 0.177522 14.1274L1.29587 10.3166C1.45232 9.78342 1.45232 9.21656 1.29587 8.68342L0.177522 4.87256C0.0914605 4.5797 -0.159866 3.72447 0.151365 2.78095C0.782515 0.867566 2.74728 0 4.40835 0ZM4.40835 2.1749H5.64136L7.48734 8.36091C7.70934 9.10482 7.70934 9.89736 7.48734 10.6413L5.64201 16.8251H4.40835C3.34937 16.8251 2.46068 16.2771 2.2168 15.5377C2.13019 15.2752 2.19006 14.9932 2.26791 14.7279L3.38276 10.929C3.65656 9.99599 3.65656 9.00399 3.38276 8.071L2.26791 4.27203C2.19006 4.00674 2.13019 3.72481 2.2168 3.46225C2.46068 2.72292 3.34937 2.1749 4.40835 2.1749ZM9.57143 7.73899L7.91103 2.1749H11.6284L13.5363 8.56821C13.7179 9.17687 13.7179 9.82531 13.5363 10.434L11.6291 16.8251H7.91168L9.57143 11.2632C9.91451 10.1135 9.91451 8.88867 9.57143 7.73899ZM13.8987 16.8251H16.5053C17.1811 16.8251 17.7958 16.4339 18.082 15.8217L20.0326 11.649C20.6692 10.2871 20.6692 8.71292 20.0325 7.35096L18.082 3.1783C17.7958 2.5661 17.1811 2.1749 16.5053 2.1749H13.8981L15.6203 7.94629C15.9231 8.96072 15.9231 10.0415 15.6203 11.0559L13.8987 16.8251Z" fill="#22AD01"/></svg>
+                    </div>
+                    <div class="doc-card-title">Market Entry Strategy</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Meeting completed: Strategic Planning Offsite -->
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="user-avatar avatar-xs" style="background-image: url('https://ui-avatars.com/api/?name=CT&size=250&background=4c525a&color=ffffff&format=png');"></div>
+                  <div class="activity-item-line"></div>
+                </div>
+                <div class="activity-item-body">
+                  <div class="activity-meta"><strong>Chris Taylor</strong> completed a meeting with Michael Fawler &middot; Jan 20, 9:00 AM</div>
+                  <div class="meeting-card">
+                    <div class="meeting-card-icon">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#22AD01" stroke-width="1.5"><rect x="1" y="3" width="10" height="10" rx="1.5"/><path d="M11 7l4-2v6l-4-2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="meeting-card-title">Strategic Planning Offsite</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Note: Tom Bradley Jan 14 -->
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="user-avatar avatar-xs" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                  <div class="activity-item-line"></div>
+                </div>
+                <div class="activity-item-body">
+                  <div class="activity-meta"><strong>Tom Bradley</strong> added a note &middot; Jan 14, 2:45 PM</div>
+                  <div class="activity-text">Competitive landscape draft reviewed. Michael thinks our TAM estimates for enterprise are conservative—wants us to push 15-20% higher based on their internal data.</div>
+                </div>
+                <div class="note-actions" style="flex-shrink:0; position: relative;">
+                  <button class="note-menu-btn" onclick="toggleNoteMenu(this)">···</button>
+                  <div class="note-dropdown" style="display:none;">
+                    <div class="field-popup-menu popup-menu-120" style="position:relative; box-shadow: var(--box-shadow-medium);">
+                      <a class="field-popup-menu-list-item" onclick="editNote(this)">Edit</a>
+                      <a class="field-popup-menu-list-item field-popup-menu-list-item--danger" onclick="deleteNote(this)">Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Meeting completed: Product Demo -->
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="user-avatar avatar-xs" style="background-image: url('https://ui-avatars.com/api/?name=CT&size=250&background=4c525a&color=ffffff&format=png');"></div>
+                  <div class="activity-item-line"></div>
+                </div>
+                <div class="activity-item-body">
+                  <div class="activity-meta"><strong>Chris Taylor</strong> completed a meeting with Michael Fawler &middot; Jan 13, 2026 4:00 PM</div>
+                  <div class="meeting-card">
+                    <div class="meeting-card-icon">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#22AD01" stroke-width="1.5"><rect x="1" y="3" width="10" height="10" rx="1.5"/><path d="M11 7l4-2v6l-4-2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="meeting-card-title">Product Demo – Enterprise Plan</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Proposal sent: Tom Bradley -->
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="user-avatar avatar-xs" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                  <div class="activity-item-line"></div>
+                </div>
+                <div class="activity-item-body">
+                  <div class="activity-meta"><strong>Tom Bradley</strong> sent the <a>proposal</a> to michael.fawler@techstart.co &middot; Jan 24, 5:30 PM</div>
+                  <div class="doc-card">
+                    <div class="doc-card-icon">
+                      <svg width="16" height="16" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.7278 2.70149C20.8079 2.43098 20.5585 2.19961 20.3116 2.27197L2.49928 7.48831C2.22156 7.56953 2.16281 7.95246 2.41618 8.11111C2.41622 8.11114 2.41626 8.11117 2.4163 8.11119L9.15335 12.325L15.1148 6.29982C15.5528 5.85721 16.2666 5.85342 16.7092 6.29135C17.1518 6.72928 17.1556 7.44309 16.7177 7.8857L10.7425 13.9246L14.8482 20.5843C14.8483 20.5844 14.8483 20.5845 14.8484 20.5846C14.8484 20.5846 14.8484 20.5847 14.8485 20.5847C15.0012 20.8315 15.3734 20.787 15.4584 20.5003L20.7278 2.70155L20.7278 2.70149ZM8.49211 14.5709L12.9294 21.7684C14.1091 23.6802 16.9832 23.2895 17.6202 21.1413L22.8898 3.34168C22.8898 3.34166 22.8898 3.34165 22.8898 3.34163C23.4711 1.37842 21.6572 -0.471877 19.6776 0.108136C19.6775 0.10816 19.6775 0.108184 19.6774 0.108207L1.8664 5.32417M8.49211 14.5709L1.22051 10.0228L1.22038 10.0227C-0.67572 8.83641 -0.287437 5.95438 1.86599 5.32429" fill="#22AD01"/></svg>
+                    </div>
+                    <div class="doc-card-title">Market Entry Strategy – Enterprise Segment</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Note: Chris Taylor -->
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="user-avatar avatar-xs" style="background-image: url('https://ui-avatars.com/api/?name=CT&size=250&background=4c525a&color=ffffff&format=png');"></div>
+                  <div class="activity-item-line"></div>
+                </div>
+                <div class="activity-item-body">
+                  <div class="activity-meta"><strong>Chris Taylor</strong> added a note &middot; Jan 03, 11:00 AM</div>
+                  <div class="activity-text">Board deck and strategic priorities shared under NDA. Market positioning analysis scope confirmed. Target completion: mid-February.</div>
+                </div>
+                <div class="note-actions" style="flex-shrink:0; position: relative;">
+                  <button class="note-menu-btn" onclick="toggleNoteMenu(this)">···</button>
+                  <div class="note-dropdown" style="display:none;">
+                    <div class="field-popup-menu popup-menu-120" style="position:relative; box-shadow: var(--box-shadow-medium);">
+                      <a class="field-popup-menu-list-item" onclick="editNote(this)">Edit</a>
+                      <a class="field-popup-menu-list-item field-popup-menu-list-item--danger" onclick="deleteNote(this)">Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contract signed: Michael Fawler -->
+              <div class="activity-item">
+                <div class="activity-item-left">
+                  <div class="user-avatar avatar-xs" style="background-image: url('https://ui-avatars.com/api/?name=MF&size=250&background=4c525a&color=ffffff&format=png');"></div>
+                  <div class="activity-item-line"></div>
+                </div>
+                <div class="activity-item-body">
+                  <div class="activity-meta"><strong>Michael Fawler</strong> signed the <a>contract</a> &middot; Jan 15, 1:20 PM</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ── NOTES TAB ── -->
+          <div id="tab-notes" class="tab-panel">
+            <div class="tab-section-title-row">
+              <span class="tab-section-title">Notes</span>
+            </div>
+
+            <div id="note-add-area" style="margin-bottom: 30px;">
+              <a class="contact-note-toggle" id="note-add-toggle" onclick="showNoteComposer()"><div class="contact-note-toggle-icon"><svg class="" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.4062 8.83333H11.6667V2.09375C11.6667 1.21354 10.9219 0.5 10 0.5C9.07812 0.5 8.33333 1.21354 8.33333 2.09375V8.83333H1.59375C0.713542 8.83333 0 9.57812 0 10.5C0 11.4219 0.713542 12.1667 1.59375 12.1667H8.33333V18.9062C8.33333 19.7865 9.07812 20.5 10 20.5C10.9219 20.5 11.6667 19.7865 11.6667 18.9062V12.1667H18.4062C19.2865 12.1667 20 11.4219 20 10.5C20 9.57812 19.2865 8.83333 18.4062 8.83333V8.83333Z" fill="currentColor"></path></svg></div>Add Note</a>
+              <div id="note-composer" style="display:none;"></div>
+            </div>
+
+            <div>
+
+              <!-- Note 1: Lucas Did -->
+              <div class="note-item">
+                <div class="activity-item-left">
+                  <div class="user-avatar avatar-xs" style="background-image: url('https://ui-avatars.com/api/?name=LD&size=250&background=4c525a&color=ffffff&format=png');"></div>
+                </div>
+                <div class="note-item-body">
+                  <div class="note-meta" style="margin-bottom: 4px;"><strong>Lucas Did</strong> · <span>Today 8:15:19 AM</span></div>
+                  <div class="note-text">Michael confirmed budget approval for Q1 marketing strategy. Moving forward with the $85K proposal. He mentioned the legal team will need until next week to review the contract terms. I'll schedule a follow-up call to align on timeline.</div>
+                </div>
+                <div class="note-actions" style="flex-shrink:0; position: relative;">
+                  <button class="note-menu-btn" onclick="toggleNoteMenu(this)">···</button>
+                  <div class="note-dropdown" style="display:none;">
+                    <div class="field-popup-menu popup-menu-120" style="position:relative; box-shadow: var(--box-shadow-medium);">
+                      <a class="field-popup-menu-list-item" onclick="editNote(this)">Edit</a>
+                      <a class="field-popup-menu-list-item field-popup-menu-list-item--danger" onclick="deleteNote(this)">Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Note 2: Laura Albany -->
+              <div class="note-item">
+                <div class="activity-item-left">
+                  <div class="user-avatar avatar-xs" style="background-image: url('https://randomuser.me/api/portraits/women/65.jpg');"></div>
+                </div>
+                <div class="note-item-body">
+                  <div class="note-meta" style="margin-bottom: 4px;"><strong>Laura Albany</strong> · <span>Jan 18, 2026 2:30:00 PM</span></div>
+                  <div class="note-text">Follow-up with legal on contract review. They have a few amendments around the termination clause. Will send revised version by EOD Thursday.</div>
+                </div>
+                <div class="note-actions" style="flex-shrink:0; position: relative;">
+                  <button class="note-menu-btn" onclick="toggleNoteMenu(this)">···</button>
+                  <div class="note-dropdown" style="display:none;">
+                    <div class="field-popup-menu popup-menu-120" style="position:relative; box-shadow: var(--box-shadow-medium);">
+                      <a class="field-popup-menu-list-item" onclick="editNote(this)">Edit</a>
+                      <a class="field-popup-menu-list-item field-popup-menu-list-item--danger" onclick="deleteNote(this)">Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Note 3: Lucas Did Jan 14 -->
+              <div class="note-item">
+                <div class="activity-item-left">
+                  <div class="user-avatar avatar-xs" style="background-image: url('https://ui-avatars.com/api/?name=LD&size=250&background=4c525a&color=ffffff&format=png');"></div>
+                </div>
+                <div class="note-item-body">
+                  <div class="note-meta" style="margin-bottom: 4px;"><strong>Lucas Did</strong> · <span>Jan 14, 2026 10:00:00 AM</span></div>
+                  <div class="note-text">Kickoff call went well. Michael wants to prioritize the brand refresh deliverables before the campaign launch. Agreed on bi-weekly syncs.</div>
+                </div>
+                <div class="note-actions" style="flex-shrink:0; position: relative;">
+                  <button class="note-menu-btn" onclick="toggleNoteMenu(this)">···</button>
+                  <div class="note-dropdown" style="display:none;">
+                    <div class="field-popup-menu popup-menu-120" style="position:relative; box-shadow: var(--box-shadow-medium);">
+                      <a class="field-popup-menu-list-item" onclick="editNote(this)">Edit</a>
+                      <a class="field-popup-menu-list-item field-popup-menu-list-item--danger" onclick="deleteNote(this)">Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+<!-- ── Delete Note Modal ── -->
+<div id="delete-note-modal" class="modal-overlay hidden delete-note-modal">
+  <div class="modal-wrap">
+    <div class="modal-dialog">
+      <div class="delete-note-modal-title">Delete Note</div>
+      <div class="delete-note-modal-desc">Confirm that you would like to permanently delete this note.</div>
+      <button class="btn-danger" onclick="confirmDeleteNote()">Delete</button>
+    </div>
+    <button class="modal-close-btn" onclick="closeDeleteModal()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>
+    </button>
+  </div>
+</div>

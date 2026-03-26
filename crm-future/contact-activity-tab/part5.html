@@ -1,0 +1,292 @@
+<!-- ========== MEETINGS TAB ========== -->
+<div id="tab-meetings" class="tab-panel">
+  <div class="tab-section-title-row">
+    <span class="tab-section-title">Meetings</span>
+    <div class="emails-header-actions">
+      <button class="email-compose-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New Meeting
+      </button>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;">
+    <div style="flex:1; position:relative;">
+      <input class="form-field input-sm" type="text" placeholder="Search meetings..." style="width:100%; padding-left:32px;" />
+      <svg style="position:absolute; left:10px; top:50%; transform:translateY(-50%); color:var(--text-muted);" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+    <button class="btn btn-sm btn-secondary-outline">All</button>
+    <button class="btn btn-sm btn-secondary-outline">Upcoming</button>
+    <button class="btn btn-sm btn-secondary-outline">Past</button>
+  </div>
+
+  <!-- List grid -->
+  <div class="list-grid">
+    <div class="list-grid-col-header" style="display:grid; grid-template-columns:2fr 1fr 1fr 80px; gap:0;">
+      <div class="list-grid-col-header-item">Meeting</div>
+      <div class="list-grid-col-header-item">Date</div>
+      <div class="list-grid-col-header-item">Attendees</div>
+      <div class="list-grid-col-header-item"></div>
+    </div>
+    <div class="list-grid-body">
+
+      <!-- Row 1 -->
+      <div class="list-grid-body-row" onclick="openMeetingPanel(0)" style="display:grid; grid-template-columns:2fr 1fr 1fr 80px; gap:0; align-items:center; cursor:pointer;">
+        <div class="list-grid-body-row-cell">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="category-tag" style="display:inline-flex; align-items:center; gap:4px;">
+              <svg class="category-tag-icon--play-icon" viewBox="0 0 10 10" fill="#22AD01"><polygon points="2,1 9,5 2,9"/></svg>
+              Recorded
+            </span>
+            <span style="font-size:13px; font-weight:500; color:var(--text-default);">Product Demo &amp; Rebrand Kickoff</span>
+          </div>
+        </div>
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-muted);">Mar 7, 2026 · 1:30 PM</div>
+        <div class="list-grid-body-row-cell">
+          <div class="meetings-avatar-stack">
+            <div class="meetings-user-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Lucas+D&size=22&background=22AD01&color=fff')"></div>
+            <div class="meetings-user-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Michael+F&size=22&background=e8e8e8&color=333')"></div>
+          </div>
+        </div>
+        <div class="list-grid-body-row-cell" style="font-size:12px; color:var(--text-muted);">58 min</div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="list-grid-body-row" onclick="openMeetingPanel(1)" style="display:grid; grid-template-columns:2fr 1fr 1fr 80px; gap:0; align-items:center; cursor:pointer;">
+        <div class="list-grid-body-row-cell">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="category-tag" style="display:inline-flex; align-items:center; gap:4px;">
+              <svg class="category-tag-icon--play-icon" viewBox="0 0 10 10" fill="#22AD01"><polygon points="2,1 9,5 2,9"/></svg>
+              Recorded
+            </span>
+            <span style="font-size:13px; font-weight:500; color:var(--text-default);">Proposal Review</span>
+          </div>
+        </div>
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-muted);">Feb 20, 2026 · 11:00 AM</div>
+        <div class="list-grid-body-row-cell">
+          <div class="meetings-avatar-stack">
+            <div class="meetings-user-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Lucas+D&size=22&background=22AD01&color=fff')"></div>
+            <div class="meetings-user-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Michael+F&size=22&background=e8e8e8&color=333')"></div>
+            <div class="meetings-user-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Sarah+L&size=22&background=c084fc&color=fff')"></div>
+          </div>
+        </div>
+        <div class="list-grid-body-row-cell" style="font-size:12px; color:var(--text-muted);">42 min</div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="list-grid-body-row" onclick="openMeetingPanel(2)" style="display:grid; grid-template-columns:2fr 1fr 1fr 80px; gap:0; align-items:center; cursor:pointer;">
+        <div class="list-grid-body-row-cell">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:13px; font-weight:500; color:var(--text-default);">Discovery Call</span>
+          </div>
+        </div>
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-muted);">Jan 30, 2026 · 3:00 PM</div>
+        <div class="list-grid-body-row-cell">
+          <div class="meetings-avatar-stack">
+            <div class="meetings-user-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Lucas+D&size=22&background=22AD01&color=fff')"></div>
+            <div class="meetings-user-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Michael+F&size=22&background=e8e8e8&color=333')"></div>
+          </div>
+        </div>
+        <div class="list-grid-body-row-cell" style="font-size:12px; color:var(--text-muted);">35 min</div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- end #tab-meetings -->
+
+<!-- ========== CALLS TAB ========== -->
+<div id="tab-calls" class="tab-panel">
+  <div class="tab-section-title-row">
+    <span class="tab-section-title">Calls</span>
+    <div class="emails-header-actions">
+      <button class="email-compose-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Log Call
+      </button>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;">
+    <div style="flex:1; position:relative;">
+      <input class="form-field input-sm" type="text" placeholder="Search calls..." style="width:100%; padding-left:32px;" />
+      <svg style="position:absolute; left:10px; top:50%; transform:translateY(-50%); color:var(--text-muted);" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+    <button class="btn btn-sm btn-secondary-outline">All</button>
+    <button class="btn btn-sm btn-secondary-outline">Inbound</button>
+    <button class="btn btn-sm btn-secondary-outline">Outbound</button>
+  </div>
+
+  <!-- Calls list grid -->
+  <div class="list-grid">
+    <div class="list-grid-col-header" style="display:grid; grid-template-columns:2fr 90px 1fr 100px 60px; gap:0;">
+      <div class="list-grid-col-header-item">Summary</div>
+      <div class="list-grid-col-header-item">Duration</div>
+      <div class="list-grid-col-header-item">Date</div>
+      <div class="list-grid-col-header-item">Sentiment</div>
+      <div class="list-grid-col-header-item"></div>
+    </div>
+    <div class="list-grid-body">
+
+      <!-- Call row 1 -->
+      <div class="list-grid-body-row" style="display:grid; grid-template-columns:2fr 90px 1fr 100px 60px; gap:0; align-items:center; cursor:pointer;" onclick="openCallPanel(0)">
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-default); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Contract timeline and scope approval</div>
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-muted);">18 min</div>
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-muted);">Mar 7, 2026</div>
+        <div class="list-grid-body-row-cell"><span class="sentiment-badge sentiment-badge--positive"><span class="sentiment-badge-dot"></span>Positive</span></div>
+        <div class="list-grid-body-row-cell"><a style="font-size:12px; color:var(--color-primary); font-weight:500; cursor:pointer;">View</a></div>
+      </div>
+
+      <!-- Call row 2 -->
+      <div class="list-grid-body-row" style="display:grid; grid-template-columns:2fr 90px 1fr 100px 60px; gap:0; align-items:center; cursor:pointer;" onclick="openCallPanel(1)">
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-default); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Budget check-in, invoice breakdown requested</div>
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-muted);">9 min</div>
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-muted);">Feb 28, 2026</div>
+        <div class="list-grid-body-row-cell"><span class="sentiment-badge sentiment-badge--neutral"><span class="sentiment-badge-dot"></span>Neutral</span></div>
+        <div class="list-grid-body-row-cell"><a style="font-size:12px; color:var(--color-primary); font-weight:500; cursor:pointer;">View</a></div>
+      </div>
+
+      <!-- Call row 3 -->
+      <div class="list-grid-body-row" style="display:grid; grid-template-columns:2fr 90px 1fr 100px 60px; gap:0; align-items:center; cursor:pointer;" onclick="openCallPanel(2)">
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-default); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Initial discovery call, high intent and great rapport</div>
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-muted);">24 min</div>
+        <div class="list-grid-body-row-cell" style="font-size:13px; color:var(--text-muted);">Feb 14, 2026</div>
+        <div class="list-grid-body-row-cell"><span class="sentiment-badge sentiment-badge--positive"><span class="sentiment-badge-dot"></span>Positive</span></div>
+        <div class="list-grid-body-row-cell"><a style="font-size:12px; color:var(--color-primary); font-weight:500; cursor:pointer;">View</a></div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- end #tab-calls -->
+
+<!-- ========== CALL DETAIL PANEL ========== -->
+<div class="call-detail-panel" id="call-detail-panel">
+  <div class="cdp-top-bar">
+    <div class="cdp-top-bar-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+    </div>
+    <span class="cdp-top-bar-label" id="cdp-title">Call with Michael Fawler</span>
+    <button class="cdp-close-btn" onclick="closeCallPanel()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <!-- Waveform placeholder -->
+  <div class="cdp-waveform" id="cdp-waveform" style="gap:3px; padding:0 24px; height:72px; background:var(--bg-grey-f5); display:flex; align-items:center; flex-shrink:0;">
+    <!-- bars generated by JS -->
+  </div>
+
+  <!-- Metadata bar -->
+  <div class="cdp-meta-bar">
+    <div class="cdp-meta-item">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span id="cdp-duration">18 min</span>
+    </div>
+    <span class="cdp-meta-sep">·</span>
+    <div class="cdp-meta-item">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      <span id="cdp-phone">+1 (415) 555-0192</span>
+    </div>
+    <span class="cdp-meta-sep">·</span>
+    <span class="sentiment-badge sentiment-badge--positive" id="cdp-sentiment"><span class="sentiment-badge-dot"></span>Positive</span>
+  </div>
+
+  <!-- Subnavigation -->
+  <div class="cdp-subnav">
+    <div class="cdp-subnav-items">
+      <a class="cdp-subnav-item active" onclick="switchCallTab('summary', this); return false;" href="#">Summary</a>
+      <a class="cdp-subnav-item" onclick="switchCallTab('transcript', this); return false;" href="#">Transcript</a>
+    </div>
+  </div>
+
+  <!-- Summary tab -->
+  <div class="cdp-tab-panel" id="cdp-tab-summary">
+    <!-- AI Summary -->
+    <div class="cdp-section">
+      <div class="ai-insights-header" style="margin-bottom:10px;">
+        <span class="ai-intel-badge">✦ AI</span>
+        <span class="cdp-section-title" style="margin-bottom:0;">Call Summary</span>
+      </div>
+      <p class="cdp-recap-text" id="cdp-recap">Michael confirmed budget approval for the full rebrand project scope. He requested the updated contract be sent by Friday and mentioned he'd like to schedule a follow-up to review the moodboard. Tone was positive and enthusiastic throughout.</p>
+    </div>
+
+    <!-- Action Items -->
+    <div class="cdp-section">
+      <div class="cdp-section-title">Extracted Action Items</div>
+      <div class="ai-action-item">
+        <div class="ai-action-checkbox" onclick="this.classList.toggle('checked')"></div>
+        <div class="ai-action-text">Send updated contract by Friday</div>
+        <button class="ai-action-add-btn" onclick="createTaskFromAction(this)">Add to Bonsai</button>
+      </div>
+      <div class="ai-action-item">
+        <div class="ai-action-checkbox" onclick="this.classList.toggle('checked')"></div>
+        <div class="ai-action-text">Schedule moodboard review call next week</div>
+        <button class="ai-action-add-btn" onclick="createTaskFromAction(this)">Add to Bonsai</button>
+      </div>
+      <div class="ai-action-item">
+        <div class="ai-action-checkbox" onclick="this.classList.toggle('checked')"></div>
+        <div class="ai-action-text">Create invoice for full project scope</div>
+        <button class="ai-action-add-btn" onclick="createTaskFromAction(this)">Add to Bonsai</button>
+      </div>
+    </div>
+
+    <!-- Key Topics -->
+    <div class="cdp-section">
+      <div class="cdp-section-title">Key Topics</div>
+      <div style="display:flex; flex-wrap:wrap; gap:6px;">
+        <span style="padding:3px 10px; background:var(--bg-grey-f1); border-radius:20px; font-size:12px; color:var(--text-default);">Contract timeline</span>
+        <span style="padding:3px 10px; background:var(--bg-grey-f1); border-radius:20px; font-size:12px; color:var(--text-default);">Budget approval</span>
+        <span style="padding:3px 10px; background:var(--bg-grey-f1); border-radius:20px; font-size:12px; color:var(--text-default);">Rebrand scope</span>
+        <span style="padding:3px 10px; background:var(--bg-grey-f1); border-radius:20px; font-size:12px; color:var(--text-default);">Moodboard review</span>
+      </div>
+    </div>
+
+    <!-- Follow-up action -->
+    <div class="cdp-section">
+      <button class="ai-followup-btn" onclick="openAiFollowupEmail()" style="margin-bottom:0; justify-content:center;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        Draft AI follow-up email
+      </button>
+    </div>
+  </div>
+
+  <!-- Transcript tab -->
+  <div class="cdp-tab-panel" id="cdp-tab-transcript" hidden>
+    <div class="mdp-transcript-block">
+      <div class="mdp-transcript-meta">
+        <span class="mdp-transcript-speaker">Michael Fawler</span>
+        <span class="mdp-transcript-time">0:00</span>
+      </div>
+      <p class="mdp-transcript-text">Hey, thanks for picking up. I wanted to loop back on the rebrand proposal — I've got sign-off from leadership.</p>
+    </div>
+    <div class="mdp-transcript-block">
+      <div class="mdp-transcript-meta">
+        <span class="mdp-transcript-speaker">You</span>
+        <span class="mdp-transcript-time">0:18</span>
+      </div>
+      <p class="mdp-transcript-text">That's great news! So we're good to move forward with the full scope?</p>
+    </div>
+    <div class="mdp-transcript-block">
+      <div class="mdp-transcript-meta">
+        <span class="mdp-transcript-speaker">Michael Fawler</span>
+        <span class="mdp-transcript-time">0:25</span>
+      </div>
+      <p class="mdp-transcript-text">Yes, let's move forward with the full rebrand scope. Can you send me the updated contract by Friday? I'd also love to see the moodboard before our next call.</p>
+    </div>
+    <div class="mdp-transcript-block">
+      <div class="mdp-transcript-meta">
+        <span class="mdp-transcript-speaker">You</span>
+        <span class="mdp-transcript-time">0:44</span>
+      </div>
+      <p class="mdp-transcript-text">Absolutely. I'll get that over to you by Friday and we can schedule a moodboard review session next week.</p>
+    </div>
+    <div class="mdp-transcript-block">
+      <div class="mdp-transcript-meta">
+        <span class="mdp-transcript-speaker">Michael Fawler</span>
+        <span class="mdp-transcript-time">1:02</span>
+      </div>
+      <p class="mdp-transcript-text">Perfect. Looking forward to it. The team is really excited about this project.</p>
+    </div>
+  </div>
+</div><!-- end #call-detail-panel -->
