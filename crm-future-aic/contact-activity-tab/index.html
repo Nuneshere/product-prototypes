@@ -14,6 +14,11 @@
       --sidenav-item-hover-bg: var(--bg-hover-subtle, #fcfcfc);
       --sidenav-item-selected-bg: var(--bg-grey-f1, #f1f1f1);
     }
+    /* ── Collapsed sidenav overrides ── */
+    .sidenav-container--collapsed .sidenav-top-section-search { display: none; }
+    .sidenav-container--collapsed .sidenav-company-menu-avatar { display: none; }
+    .sidenav-container--collapsed .sidenav-company-menu { display: none; }
+
     /* meetings icon has no rule in application.css — add it here */
     .sidenav-features-item-icon.meetings {
       top: 10px;
